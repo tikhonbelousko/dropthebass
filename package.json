@@ -23,5 +23,8 @@
     "stylus-loader": "^1.4.2",
     "webpack": "^1.12.4",
     "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4"
   }
 }

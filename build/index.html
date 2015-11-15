@@ -7,8 +7,14 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <audio id="player" controls preload>
+        <!-- <source type="audio/mp3" /> -->
+        <!-- This text displays if the audio tag isn't supported. -->
+      </audio>
+    </div>
 
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
     <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
   </body>
 </html>
