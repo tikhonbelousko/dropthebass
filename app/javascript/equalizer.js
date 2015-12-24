@@ -180,16 +180,16 @@ function drawFace() {
 // Class for Face in the grid
 // ---
 class Face {
-  static get ROW_COUNT()    { return 20 }
-  static get COLUMN_COUNT() { return 20 }
+  static get ROW_COUNT()    { return 31 }
+  static get COLUMN_COUNT() { return 31 }
 
 
   get scaleX() {
-    return 1/Face.COLUMN_COUNT
+    return 1/this.constructor.COLUMN_COUNT
   }
 
   get scaleY() {
-    return 1/Face.ROW_COUNT
+    return 1/this.constructor.ROW_COUNT
   }
 
   constructor(row, column) {
@@ -199,13 +199,15 @@ class Face {
 
   draw() {
     let {scaleX, scaleY, row, column} = this
-    let {ROW_COUNT, COLUMN_COUNT} = Face
+    let {ROW_COUNT, COLUMN_COUNT} = this.constructor
+    let k = Math.max(4, Math.sqrt(Math.pow((row - (ROW_COUNT-1)/2), 2) + Math.pow((column - (COLUMN_COUNT-1)/2), 2))) * 0.5
 
+    // console.log(k, row, column)
     mvPushMatrix()
 
     mat4.scale(mvMatrix, mvMatrix, [scaleX, scaleY, 0])
     mat4.translate(mvMatrix, mvMatrix, [-(COLUMN_COUNT-1) + column*2, -(ROW_COUNT-1) + row*2, 0])
-    mat4.scale(mvMatrix, mvMatrix, [1 - .01*COLUMN_COUNT, 1 - .01*ROW_COUNT, 0])
+    mat4.scale(mvMatrix, mvMatrix, [1/k, 1/k, 0])
 
     drawFace()
     mvPopMatrix()
@@ -237,7 +239,7 @@ function drawScene() {
   mat4.perspective(pMatrix, 45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0);
 
   mat4.identity(mvMatrix)
-  mat4.translate(mvMatrix, mvMatrix, [-0.0, 0.0, -6.0, 1.0])
+  mat4.translate(mvMatrix, mvMatrix, [-0.0, 0.0, -2.0, 1.0])
 
   for (var i in faces) {
     faces[i].draw()
