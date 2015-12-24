@@ -1,3 +1,5 @@
+import { mat4 } from 'gl-matrix'
+
 // On Load
 document.addEventListener('DOMContentLoaded', onLoad, false)
 
@@ -8,17 +10,20 @@ let squareVerticesBuffer
 let squareVerticesColorBuffer
 let cubeVerticesIndexBuffer
 let cubeVerticesNormalBuffer
-let mvMatrix
 let shaderProgram
 let vertexPositionAttribute
 let vertexColorAttribute
 let vertexNormalAttribute
-let perspectiveMatrix
 
 //  Animation
 let cubeRotation = 0.0
+let cubeXOffset = 0.0
+let cubeYOffset = 0.0
+let cubeZOffset = 0.0
 let lastCubeUpdateTime = 0
-
+let xIncValue = 0.2
+let yIncValue = -0.4
+let zIncValue = 0.3
 
 // Constants
 let horizAspect = 640.0/480.0
@@ -130,6 +135,7 @@ function getShader(gl, id) {
 // Init buffers
 function initBuffers() {
 
+
   // ---
   // Vertices
   // ---
@@ -170,9 +176,11 @@ function initBuffers() {
     -1.0,  1.0,  1.0,
     -1.0,  1.0, -1.0
   ]
+
   squareVerticesBuffer = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer)
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
+
 
   // ---
   // Colors
@@ -186,7 +194,7 @@ function initBuffers() {
     [1.0,  0.0,  1.0,  1.0]     // Left face: purple
   ];
 
-  let generatedColors = []
+  let generatedColors = [];
 
   for (let j=0; j<6; j++) {
     let c = colors[j];
@@ -264,18 +272,54 @@ function initBuffers() {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexNormals), gl.STATIC_DRAW)
 }
 
+// ---
+// Matrix utils
+// ---
+let mvMatrix = mat4.create()
+let mvMatrixStack = []
+let pMatrix = mat4.create()
+
+function mvPushMatrix() {
+    let copy = mat4.create()
+    mat4.copy(copy, mvMatrix)
+    mvMatrixStack.push(copy)
+}
+
+function mvPopMatrix() {
+    if (mvMatrixStack.length == 0) {
+        throw "Invalid popMatrix!"
+    }
+    mvMatrix = mvMatrixStack.pop()
+}
+
+function setMatrixUniforms() {
+  let pMatrixUniform  = gl.getUniformLocation(shaderProgram, 'uPMatrix')
+  let mvMatrixUniform = gl.getUniformLocation(shaderProgram, 'uMVMatrix')
+  let nMatrixUniform  = gl.getUniformLocation(shaderProgram, 'uNormalMatrix')
+
+  let nMatrix = mat4.create()
+  mat4.invert(nMatrix, mvMatrix)
+  mat4.transpose(nMatrix, nMatrix)
+
+  gl.uniformMatrix4fv(nMatrixUniform, false, nMatrix)
+  gl.uniformMatrix4fv(pMatrixUniform, false, pMatrix)
+  gl.uniformMatrix4fv(mvMatrixUniform, false, mvMatrix)
+}
 
 // Draw scene
 function drawScene() {
   gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT)
-  perspectiveMatrix = makePerspective(45, horizAspect, 0.1, 100.0)
 
-  loadIdentity()
-  mvTranslate([-0.0, 0.0, -6.0])
+  // Set perspective
+  mat4.perspective(pMatrix, 45, horizAspect, 0.1, 100.0)
 
-  // Save current matrix
+  // Set model matrix
+  mat4.identity(mvMatrix)
+  mat4.translate(mvMatrix, mvMatrix, [-0.0, 0.0, -6.0, 1.0])
   mvPushMatrix()
-  mvRotate(cubeRotation, [1, 0, 1])
+
+  // Rotation
+  mat4.rotate(mvMatrix, mvMatrix, cubeRotation, [1, 0, 1])
 
   // Positions
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer)
@@ -289,8 +333,10 @@ function drawScene() {
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesNormalBuffer)
   gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0)
 
-  // Draw
+  // Indices
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer)
+
+  // Draw
   setMatrixUniforms()
   gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0)
 
@@ -298,76 +344,36 @@ function drawScene() {
   mvPopMatrix()
 
   // Update the rotation for the next draw
-  let currentTime = (new Date).getTime();
+  let currentTime = (new Date).getTime()
   if (lastCubeUpdateTime) {
     let delta = currentTime - lastCubeUpdateTime;
 
-    cubeRotation += (30 * delta) / 1000.0;
+    cubeRotation += (10 * delta) / 10000.0;
   }
 
   lastCubeUpdateTime = currentTime;
 }
-
-
-// ---
-// Matrix utils
-// ---
-function loadIdentity() {
-  mvMatrix = Matrix.I(4)
-}
-
-function multMatrix(m) {
-  mvMatrix = mvMatrix.x(m)
-}
-
-function mvTranslate(v) {
-  multMatrix(Matrix.Translation($V([v[0], v[1], v[2]])).ensure4x4())
-}
-
-function setMatrixUniforms() {
-  let pUniform = gl.getUniformLocation(shaderProgram, 'uPMatrix')
-  gl.uniformMatrix4fv(pUniform, false, new Float32Array(perspectiveMatrix.flatten()))
-
-  let mvUniform = gl.getUniformLocation(shaderProgram, 'uMVMatrix')
-  gl.uniformMatrix4fv(mvUniform, false, new Float32Array(mvMatrix.flatten()))
-
-  let normalMatrix = mvMatrix.inverse()
-  normalMatrix = normalMatrix.transpose()
-  let nUniform = gl.getUniformLocation(shaderProgram, "uNormalMatrix")
-  gl.uniformMatrix4fv(nUniform, false, new Float32Array(normalMatrix.flatten()))
-}
-
-let mvMatrixStack = []
-function mvPushMatrix(m) {
-  if (m) {
-    mvMatrixStack.push(m.dup())
-    mvMatrix = m.dup()
-  } else {
-    mvMatrixStack.push(mvMatrix.dup())
-  }
-}
-
-function mvPopMatrix() {
-  if (!mvMatrixStack.length) {
-    throw("Can't pop from an empty matrix stack.")
-  }
-
-  mvMatrix = mvMatrixStack.pop()
-  return mvMatrix
-}
-
-function mvRotate(angle, v) {
-  let inRadians = angle * Math.PI / 180.0
-
-  let m = Matrix.Rotation(inRadians, $V([v[0], v[1], v[2]])).ensure4x4()
-  multMatrix(m)
-}
-
 
 // ---
 // Animation
 // ---
 function repeatAnimation(callback) {
   callback()
-  requestAnimationFrame(repeatAnimation.bind(this, callback))
+  setTimeout( () => requestAnimationFrame(repeatAnimation.bind(this, callback)), 1000 / 60 )
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
