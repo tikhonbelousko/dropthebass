@@ -1,82 +1,15 @@
 import { mat4 } from 'gl-matrix'
-import {
-  repeatAnimation,
-  initWebGL
-} from './utils'
+import { repeatAnimation, initWebGL } from './utils'
 
 // On Load
 document.addEventListener('DOMContentLoaded', onLoad, false)
 
 // Variables
-let canvas
 let gl
-let squareVerticesBuffer
-let squareVerticesColorBuffer
-let cubeVerticesIndexBuffer
-let cubeVerticesNormalBuffer
-let shaderProgram
-let vertexPositionAttribute
-let vertexColorAttribute
-let vertexNormalAttribute
 
-//  Animation
-let cubeRotation = 0.0
-let cubeXOffset = 0.0
-let cubeYOffset = 0.0
-let cubeZOffset = 0.0
-let lastCubeUpdateTime = 0
-let xIncValue = 0.2
-let yIncValue = -0.4
-let zIncValue = 0.3
-
-// Constants
-const horizAspect = 640.0/480.0
-
-// Main function
-function onLoad() {
-  canvas = document.getElementById('glcanvas')
-  gl = initWebGL(canvas)
-
-  if (gl) {
-    gl.clearColor(0.0,0.0,0.0,1.0)
-    gl.enable(gl.DEPTH_TEST)
-    gl.depthFunc(gl.LEQUAL)
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-
-    initShaders()
-    initBuffers()
-
-    repeatAnimation(drawScene)
-  }
-}
-
-// Init shaders
-function initShaders() {
-  let vertexShader = getShader(gl, 'shader-vs')
-  let fragmentShader = getShader(gl, 'shader-fs')
-
-  shaderProgram = gl.createProgram()
-  gl.attachShader(shaderProgram, vertexShader)
-  gl.attachShader(shaderProgram, fragmentShader)
-  gl.linkProgram(shaderProgram)
-
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    console.log('Unable to initialize the shader program.')
-  }
-
-  gl.useProgram(shaderProgram)
-
-  vertexPositionAttribute = gl.getAttribLocation(shaderProgram, 'aVertexPosition')
-  gl.enableVertexAttribArray(vertexPositionAttribute)
-
-  vertexColorAttribute = gl.getAttribLocation(shaderProgram, 'aVertexColor')
-  gl.enableVertexAttribArray(vertexColorAttribute)
-
-  vertexNormalAttribute = gl.getAttribLocation(shaderProgram, 'aVertexNormal')
-  gl.enableVertexAttribArray(vertexNormalAttribute)
-}
-
+// ---
 // Get shader from HTML
+// ---
 function getShader(gl, id) {
   let shaderScript, theSource, currentChild, shader
 
@@ -116,143 +49,33 @@ function getShader(gl, id) {
   return shader
 }
 
+// ---
+// Init shaders
+// ---
+let shaderProgram
+function initShaders() {
+  let vertexShader = getShader(gl, 'shader-vs')
+  let fragmentShader = getShader(gl, 'shader-fs')
 
-// Init buffers
-function initBuffers() {
-  // ---
-  // Vertices
-  // ---
-  let vertices = [
-    // Front face
-    -1.0, -1.0,  1.0,
-     1.0, -1.0,  1.0,
-     1.0,  1.0,  1.0,
-    -1.0,  1.0,  1.0,
+  shaderProgram = gl.createProgram()
+  gl.attachShader(shaderProgram, vertexShader)
+  gl.attachShader(shaderProgram, fragmentShader)
+  gl.linkProgram(shaderProgram)
 
-    // Back face
-    -1.0, -1.0, -1.0,
-    -1.0,  1.0, -1.0,
-     1.0,  1.0, -1.0,
-     1.0, -1.0, -1.0,
-
-    // Top face
-    -1.0,  1.0, -1.0,
-    -1.0,  1.0,  1.0,
-     1.0,  1.0,  1.0,
-     1.0,  1.0, -1.0,
-
-    // Bottom face
-    -1.0, -1.0, -1.0,
-     1.0, -1.0, -1.0,
-     1.0, -1.0,  1.0,
-    -1.0, -1.0,  1.0,
-
-    // Right face
-     1.0, -1.0, -1.0,
-     1.0,  1.0, -1.0,
-     1.0,  1.0,  1.0,
-     1.0, -1.0,  1.0,
-
-    // Left face
-    -1.0, -1.0, -1.0,
-    -1.0, -1.0,  1.0,
-    -1.0,  1.0,  1.0,
-    -1.0,  1.0, -1.0
-  ]
-
-  squareVerticesBuffer = gl.createBuffer()
-  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer)
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
-
-
-  // ---
-  // Colors
-  // ---
-  let colors = [
-    [1.0,  1.0,  1.0,  1.0],    // Front face: white
-    [1.0,  0.0,  0.0,  1.0],    // Back face: red
-    [0.0,  1.0,  0.0,  1.0],    // Top face: green
-    [0.0,  0.0,  1.0,  1.0],    // Bottom face: blue
-    [1.0,  1.0,  0.0,  1.0],    // Right face: yellow
-    [1.0,  0.0,  1.0,  1.0]     // Left face: purple
-  ];
-
-  let generatedColors = [];
-
-  for (let j=0; j<6; j++) {
-    let c = colors[j];
-
-    for (let i=0; i<4; i++) {
-      generatedColors = generatedColors.concat(c)
-    }
+  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+    console.log('Unable to initialize the shader program.')
   }
 
-  squareVerticesColorBuffer = gl.createBuffer()
-  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesColorBuffer)
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW)
+  gl.useProgram(shaderProgram)
 
+  shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, 'aVertexPosition')
+  gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute)
 
-  // ---
-  // Indices
-  // ---
-  let cubeVertexIndices = [
-    0,  1,  2,      0,  2,  3,    // front
-    4,  5,  6,      4,  6,  7,    // back
-    8,  9,  10,     8,  10, 11,   // top
-    12, 13, 14,     12, 14, 15,   // bottom
-    16, 17, 18,     16, 18, 19,   // right
-    20, 21, 22,     20, 22, 23    // left
-  ]
+  shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, 'aVertexColor')
+  gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute)
 
-  cubeVerticesIndexBuffer = gl.createBuffer()
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer)
-  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW)
-
-
-  // ---
-  // Normals
-  // ---
-  let vertexNormals = [
-    // Front
-     0.0,  0.0,  1.0,
-     0.0,  0.0,  1.0,
-     0.0,  0.0,  1.0,
-     0.0,  0.0,  1.0,
-
-    // Back
-     0.0,  0.0, -1.0,
-     0.0,  0.0, -1.0,
-     0.0,  0.0, -1.0,
-     0.0,  0.0, -1.0,
-
-    // Top
-     0.0,  1.0,  0.0,
-     0.0,  1.0,  0.0,
-     0.0,  1.0,  0.0,
-     0.0,  1.0,  0.0,
-
-    // Bottom
-     0.0, -1.0,  0.0,
-     0.0, -1.0,  0.0,
-     0.0, -1.0,  0.0,
-     0.0, -1.0,  0.0,
-
-    // Right
-     1.0,  0.0,  0.0,
-     1.0,  0.0,  0.0,
-     1.0,  0.0,  0.0,
-     1.0,  0.0,  0.0,
-
-    // Left
-    -1.0,  0.0,  0.0,
-    -1.0,  0.0,  0.0,
-    -1.0,  0.0,  0.0,
-    -1.0,  0.0,  0.0
-  ]
-
-  cubeVerticesNormalBuffer = gl.createBuffer()
-  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesNormalBuffer)
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexNormals), gl.STATIC_DRAW)
+  shaderProgram.pMatrixUniform  = gl.getUniformLocation(shaderProgram, 'uPMatrix')
+  shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, 'uMVMatrix')
 }
 
 
@@ -263,13 +86,13 @@ let mvMatrixStack = []
 let mvMatrix = mat4.create()
 let pMatrix  = mat4.create()
 
-export function mvPushMatrix() {
+function mvPushMatrix() {
     let copy = mat4.create()
     mat4.copy(copy, mvMatrix)
     mvMatrixStack.push(copy)
 }
 
-export function mvPopMatrix() {
+function mvPopMatrix() {
     if (mvMatrixStack.length == 0) {
         throw "Invalid popMatrix!"
     }
@@ -277,69 +100,170 @@ export function mvPopMatrix() {
 }
 
 function setMatrixUniforms() {
-  let pMatrixUniform  = gl.getUniformLocation(shaderProgram, 'uPMatrix')
-  let mvMatrixUniform = gl.getUniformLocation(shaderProgram, 'uMVMatrix')
-  let nMatrixUniform  = gl.getUniformLocation(shaderProgram, 'uNormalMatrix')
+  gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix)
+  gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix)
+}
 
-  // Set normals
-  let nMatrix  = mat4.create()
-  mat4.invert(nMatrix, mvMatrix)
-  mat4.transpose(nMatrix, nMatrix)
 
-  gl.uniformMatrix4fv(nMatrixUniform, false, nMatrix)
-  gl.uniformMatrix4fv(pMatrixUniform, false, pMatrix)
-  gl.uniformMatrix4fv(mvMatrixUniform, false, mvMatrix)
+// ---
+// Init buffers
+// ---
+let faceVertexPositionBuffer
+let faceVertexColorBuffer
+let faceVertexIndexBuffer
+
+function initBuffers() {
+
+  // Vertices
+  let vertices = [
+    -1.0,  1.0,  0.0,
+     1.0,  1.0,  0.0,
+     1.0, -1.0,  0.0,
+    -1.0, -1.0,  0.0
+  ]
+
+  faceVertexPositionBuffer = gl.createBuffer()
+  gl.bindBuffer(gl.ARRAY_BUFFER, faceVertexPositionBuffer)
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
+
+  faceVertexPositionBuffer.itemSize = 3
+  faceVertexPositionBuffer.numItems = 4
+
+  // Colors
+  let colors = [
+    1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0
+  ]
+
+  faceVertexColorBuffer = gl.createBuffer()
+  gl.bindBuffer(gl.ARRAY_BUFFER, faceVertexColorBuffer)
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW)
+
+  faceVertexColorBuffer.itemSize = 4
+  faceVertexColorBuffer.numItems = 4
+
+  // Indices
+  let indices = [ 0, 1, 2, 0, 2, 3 ]
+
+  faceVertexIndexBuffer = gl.createBuffer()
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, faceVertexIndexBuffer)
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW)
+
+  faceVertexIndexBuffer.itemSize = 1
+  faceVertexIndexBuffer.numItems = 6
+}
+
+
+// ---
+// Draw Face
+// ---
+function drawFace() {
+  // Positions
+  gl.bindBuffer(gl.ARRAY_BUFFER, faceVertexPositionBuffer)
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, faceVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0)
+
+  // Colors
+  gl.bindBuffer(gl.ARRAY_BUFFER, faceVertexColorBuffer)
+  gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, faceVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0)
+
+  // Indices
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, faceVertexIndexBuffer)
+
+  // Draw
+  setMatrixUniforms()
+  gl.drawElements(gl.TRIANGLES, faceVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0)
+}
+
+// ---
+// Class for Face in the grid
+// ---
+class Face {
+  static get ROW_COUNT()    { return 20 }
+  static get COLUMN_COUNT() { return 20 }
+
+
+  get scaleX() {
+    return 1/Face.COLUMN_COUNT
+  }
+
+  get scaleY() {
+    return 1/Face.ROW_COUNT
+  }
+
+  constructor(row, column) {
+    this.row = row
+    this.column = column
+  }
+
+  draw() {
+    let {scaleX, scaleY, row, column} = this
+    let {ROW_COUNT, COLUMN_COUNT} = Face
+
+    mvPushMatrix()
+
+    mat4.scale(mvMatrix, mvMatrix, [scaleX, scaleY, 0])
+    mat4.translate(mvMatrix, mvMatrix, [-(COLUMN_COUNT-1) + column*2, -(ROW_COUNT-1) + row*2, 0])
+    mat4.scale(mvMatrix, mvMatrix, [1 - .01*COLUMN_COUNT, 1 - .01*ROW_COUNT, 0])
+
+    drawFace()
+    mvPopMatrix()
+  }
+
+}
+
+// ---
+// Init world objects
+// ---
+let faces = []
+function initWorldObjects() {
+  let facesNum = Face.COLUMN_COUNT * Face.ROW_COUNT
+
+  for (let i = 0; i < facesNum; ++i) {
+    let div = Math.floor(i / Face.COLUMN_COUNT)
+    let mod = i % Face.COLUMN_COUNT
+    faces.push(new Face(div, mod))
+  }
 }
 
 // ---
 // Draw scene
 // ---
 function drawScene() {
-  gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT)
+  gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight)
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
-  // Set perspective
-  mat4.perspective(pMatrix, 45, horizAspect, 0.1, 100.0)
+  mat4.perspective(pMatrix, 45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0);
 
-  // Set model matrix
   mat4.identity(mvMatrix)
   mat4.translate(mvMatrix, mvMatrix, [-0.0, 0.0, -6.0, 1.0])
-  mvPushMatrix()
 
-  // Rotation
-  mat4.rotate(mvMatrix, mvMatrix, cubeRotation, [1, 0, 1])
-
-  // Positions
-  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer)
-  gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0)
-
-  // Colors
-  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesColorBuffer)
-  gl.vertexAttribPointer(vertexColorAttribute, 4, gl.FLOAT, false, 0, 0)
-
-  // Normals
-  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesNormalBuffer)
-  gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0)
-
-  // Indices
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer)
-
-  // Draw
-  setMatrixUniforms()
-  gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0)
-
-  // Restore matrix
-  mvPopMatrix()
-
-  // Update the rotation for the next draw
-  let currentTime = (new Date).getTime()
-  if (lastCubeUpdateTime) {
-    let delta = currentTime - lastCubeUpdateTime;
-    cubeRotation += (10 * delta) / 10000.0;
+  for (var i in faces) {
+    faces[i].draw()
   }
-
-  lastCubeUpdateTime = currentTime;
 }
 
+// ---
+// Main function
+// ---
+function onLoad() {
+  let canvas = document.getElementById('glcanvas')
+  gl = initWebGL(canvas)
+
+  if (gl) {
+    gl.clearColor(0.0,0.0,0.0,1.0)
+    gl.enable(gl.DEPTH_TEST)
+    gl.depthFunc(gl.LEQUAL)
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+
+    initShaders()
+    initBuffers()
+    initWorldObjects()
+
+    repeatAnimation(drawScene)
+  }
+}
 
 
 

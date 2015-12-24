@@ -8,6 +8,8 @@ export function initWebGL(canvas) {
 
   try {
     gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+    gl.viewportWidth  = canvas.width
+    gl.viewportHeight = canvas.height
   } catch(e) {}
 
   if (!gl) {
