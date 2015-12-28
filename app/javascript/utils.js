@@ -40,3 +40,12 @@ export function repeatAnimation(callback) {
   callback()
   setTimeout( () => requestAnimFrame(repeatAnimation.bind(this, callback)), 1000 / 60 )
 }
+
+
+// ---
+// Gaussian 2D
+// ---
+export function gaussian(mu, sigma) {
+  let a = 1/(sigma * Math.sqrt(2*Math.PI))
+  return ((x) => a * Math.exp(-1 * ((x-mu)*(x-mu)) / (2*sigma*sigma)))
+}
