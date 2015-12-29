@@ -215,9 +215,7 @@ class Face {
     mvPushMatrix()
 
     mat4.scale(mvMatrix, mvMatrix, [scaleX, scaleY, 1])
-
     mat4.translate(mvMatrix, mvMatrix, [-(COLUMN_COUNT-1) + column*2, -(ROW_COUNT-1) + row*2, g(k) * 30 * intensity])
-
     mat4.scale(mvMatrix, mvMatrix, [0.1 + g(k)*10*intensity, 0.1 + g(k)*10*intensity, 1])
 
     drawFace()

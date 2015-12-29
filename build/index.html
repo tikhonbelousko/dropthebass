@@ -4,63 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>React Starter Pack</title>
-
-    <!-- Fragment shader -->
-    <script id="shader-fs" type="x-shader/x-fragment">
-      varying lowp vec4 vColor;
-      // varying highp vec3 vLighting;
-
-      void main(void) {
-        gl_FragColor = vColor;
-      }
-    </script>
-
-    <!-- Vertex shader -->
-    <script id="shader-vs" type="x-shader/x-vertex">
-      // attribute vec3 aVertexNormal;
-      attribute vec3 aVertexPosition;
-      attribute vec4 aVertexColor;
-
-      // uniform mat4 uNormalMatrix;
-      uniform mat4 uMVMatrix;
-      uniform mat4 uPMatrix;
-
-      varying lowp  vec4 vColor;
-      // varying highp vec3 vLighting;
-
-      void main(void) {
-        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-        vColor = aVertexColor;
-
-        // Lighting effects
-        // highp vec3 ambientLight = vec3(0.6, 0.6, 0.6);
-        // highp vec3 directionalLightColor = vec3(0.5, 0.5, 0.75);
-        // highp vec3 directionalVector = vec3(0.85, 0.8, 0.75);
-
-        // highp vec4 transformedNormal = uNormalMatrix * vec4(aVertexNormal, 1.0);
-
-        // highp float directional = max(dot(transformedNormal.xyz, directionalVector), 0.0);
-        // vLighting = ambientLight + (directionalLightColor * directional);
-      }
-    </script>
   </head>
 
   <body>
     <div id="app">
-      <audio id="player" controls preload>
-        <!-- <source type="audio/mp3" /> -->
-        <!-- This text displays if the audio tag isn't supported. -->
-      </audio>
-
-      <canvas id="glcanvas">
-      </canvas>
     </div>
 
     <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-
-    <script type="text/javascript" src="sylvester.js" charset="utf-8"></script>
-    <script type="text/javascript" src="gl-utils.js" charset="utf-8"></script>
-
     <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
   </body>
 </html>

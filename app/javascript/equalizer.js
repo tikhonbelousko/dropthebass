@@ -183,7 +183,6 @@ class Face {
   static get ROW_COUNT()    { return 31 }
   static get COLUMN_COUNT() { return 31 }
 
-
   get scaleX() {
     return 1/this.constructor.COLUMN_COUNT
   }

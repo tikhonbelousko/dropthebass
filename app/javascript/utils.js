@@ -10,7 +10,9 @@ export function initWebGL(canvas) {
     gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
     gl.viewportWidth  = canvas.width
     gl.viewportHeight = canvas.height
-  } catch(e) {}
+  } catch(e) {
+    console.warn(e)
+  }
 
   if (!gl) {
     console.log('Unable to initialize WebGL. Your browser may not support it.')

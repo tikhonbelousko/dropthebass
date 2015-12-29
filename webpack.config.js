@@ -2,13 +2,14 @@ var path = require('path');
 
 var config = {
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
     path.resolve(__dirname, 'app/main.js')
   ],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', '.styl', '.csv', '.glsl']
   },
   module: {
     loaders: [
@@ -17,7 +18,7 @@ var config = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015']
+          presets: ['es2015', 'react']
         }
       },
       {
@@ -27,6 +28,10 @@ var config = {
       {
         test: /\.styl$/,
         loader: 'style!css!stylus'
+      },
+      {
+        test: /\.glsl$/,
+        loader: 'shader'
       }
     ]
   }
