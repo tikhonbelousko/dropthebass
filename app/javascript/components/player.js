@@ -23,7 +23,7 @@ class Player extends React.Component {
           </div>
         </div>
 
-        <div className='player-open'>Open new song</div>
+        <div className='player-open' onClick={this.props.onOpen}>Open new song</div>
       </div>
     )
   }

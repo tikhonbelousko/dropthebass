@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.analyser = null
-    this.state = {intensity: 0, openModal: false}
+    this.state = {intensity: 0, modalOpen: false}
   }
 
   componentDidMount() {
@@ -64,14 +64,21 @@ class App extends React.Component {
     return (
       <div className='visualizer-app'>
         <Gaussian intensity={this.state.intensity}/>
-        <Player artwork={ songData ? songData.artwork_url : null }/>
+        <Player
+          artwork={ songData ? songData.artwork_url : null }
+          onOpen={() => this.setState({modalOpen: true})}
+        />
         <audio
           ref='player'
           src={ songData ? songData.song_url : ''}
           controls preload>
         </audio>
 
-        <Modal/>
+        <Modal
+          isOpen={this.state.modalOpen}
+          onOverlayClick={() => this.setState({modalOpen: false})}
+          onButtonClick={() => null}
+          />
       </div>
     )
   }
