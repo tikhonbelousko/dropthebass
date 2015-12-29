@@ -1,25 +1,30 @@
 import React from 'react'
+import classNames from 'classnames'
 
 class Player extends React.Component {
 
   render() {
     let background = this.props.artwork ? `url(${this.props.artwork})` : false
+    let classes = classNames({
+      'player': true,
+      '-paused': this.props.isPaused
+    })
 
     return (
-      <div className='player'>
+      <div className={classes}>
         <div className='player-artwork' style={{background}}>
-          <div className='player-overlay'></div>
+          <div className='player-overlay' onClick={this.props.onPlay}></div>
         </div>
 
         <div className='player-content'>
-          <div className='title'> Disclosure - Omen (Dillon Fran… </div>
-          <div className='singer'> Dillonfrancis </div>
+          <div className='title'> {this.props.title} </div>
+          <div className='singer'> {this.props.author} </div>
           <div className='progress-block'>
             <div className='progress'>
               <div className='fill'></div>
               <div className='handle'></div>
             </div>
-            <div className='time'> 0:29 </div>
+            <div className='time'> {this.props.time} </div>
           </div>
         </div>
 

@@ -56,19 +56,44 @@ class App extends React.Component {
 
     this.setState({intensity})
     setTimeout(this.tick.bind(this), 1000/60)
+    // setTimeout(this.tick.bind(this), 1000)
+  }
+
+  onPlay() {
+    if (this.refs.player && this.refs.player.paused) {
+      this.refs.player.play()
+    } else {
+      this.refs.player.pause()
+    }
+  }
+
+  formatTime(time) {
+    time = Math.floor(time)
+    let minutes = '' + Math.floor(time / 60);
+    let seconds = '0' + (time - minutes * 60);
+    return minutes.substr(-2) + ":" + seconds.substr(-2);
   }
 
   render() {
     let songData = this.props.song.data
+    let time = this.refs.player ? this.formatTime(this.refs.player.currentTime) : null
+    // console.log(this.refs.player)
 
     return (
       <div className='visualizer-app'>
         <Gaussian intensity={this.state.intensity}/>
         <Player
           artwork={ songData ? songData.artwork_url : null }
+          title={ songData ? songData.title : null }
+          author={ songData ? songData.user.username : null }
+          time={ time ? time : '0:00' }
+          onPlay={ () => this.onPlay() }
+          isPaused={ this.refs.player ? this.refs.player.paused : true }
           onOpen={() => this.setState({modalOpen: true})}
         />
+
         <audio
+          style={{display: 'none'}}
           ref='player'
           src={ songData ? songData.song_url : ''}
           controls preload>

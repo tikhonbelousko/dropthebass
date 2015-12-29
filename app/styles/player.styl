@@ -15,6 +15,13 @@ $accentColor = #E85498
   z-index 10
   border-radius 3px
 
+  &.-paused
+    .player-overlay
+      opacity 1
+
+    .player-overlay:before
+      background url(../assets/play-button.svg)
+
   // Artwork
   .player-artwork
     width 100px
@@ -46,7 +53,7 @@ $accentColor = #E85498
       display block
       width 34px
       height 34px
-      background url(../assets/play-button.svg)
+      background url(../assets/pause-button.svg)
 
 
   // Content
@@ -58,6 +65,9 @@ $accentColor = #E85498
       font-size 16px
       color $textColor
       margin-bottom 6px
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
 
     .singer
       font-size 14px
@@ -65,6 +75,10 @@ $accentColor = #E85498
       opacity 0.9
       text-transform uppercase
       margin-bottom 10px
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+
 
   // Progress bar
   .progress-block
@@ -91,7 +105,6 @@ $accentColor = #E85498
       background $textColor
       position absolute
       left 40%
-
 
     .time
       color $textColor
