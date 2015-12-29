@@ -196,11 +196,6 @@ export default class Gaussian extends React.Component {
     mat4.translate(mvMatrix, mvMatrix, [-(cols-1) + c*2, -(rows-1) + r*2, g(k) * 30 * intensity])
     mat4.scale(mvMatrix, mvMatrix, [0.1 + g(k)*10*intensity, 0.1 + g(k)*10*intensity, 1])
 
-    // console.log(r, c)
-    // mat4.scale(mvMatrix, mvMatrix, [1/cols, 1/rows, 1])
-    // mat4.translate(mvMatrix, mvMatrix, [1, 1, 1])
-    // mat4.scale(mvMatrix, mvMatrix, [1.1, 1.1, 1])
-
     this.drawBuffer()
     this.mvPopMatrix()
 
@@ -272,7 +267,7 @@ export default class Gaussian extends React.Component {
   // ---
   render() {
     return (
-      <canvas ref='canvas' className='gaussian' width={640} height={480}>
+      <canvas ref='canvas' className='gaussian'>
       </canvas>
     )
   }
