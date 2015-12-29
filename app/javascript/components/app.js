@@ -1,18 +1,23 @@
 import React from 'react'
 import Gaussian from './gaussian'
+import Player from './player'
+import Modal from './modal'
 import { connect } from 'react-redux'
 import { fetchSong } from '../actions'
 import d3 from 'd3'
+
+
 class App extends React.Component {
 
   constructor(props) {
     super(props)
     this.analyser = null
-    this.state = {intensity: 0}
+    this.state = {intensity: 0, openModal: false}
   }
 
   componentDidMount() {
-    let TRACK_URL = 'https://soundcloud.com/dillonfrancis/disclosure-omen-dillon-francis-remix'
+    // let TRACK_URL = 'https://soundcloud.com/dillonfrancis/disclosure-omen-dillon-francis-remix'
+    let TRACK_URL = 'https://soundcloud.com/lyonsounds/g-eazy-me-myself-and-i'
     this.props.dispatch(fetchSong(TRACK_URL))
     this.tick()
   }
@@ -54,15 +59,19 @@ class App extends React.Component {
   }
 
   render() {
+    let songData = this.props.song.data
+
     return (
       <div className='visualizer-app'>
         <Gaussian intensity={this.state.intensity}/>
+        <Player artwork={ songData ? songData.artwork_url : null }/>
         <audio
           ref='player'
-          src={ this.props.song.data ? this.props.song.data.song_url : ''}
-          onPlaying={this.onPlaying}
+          src={ songData ? songData.song_url : ''}
           controls preload>
         </audio>
+
+        <Modal/>
       </div>
     )
   }

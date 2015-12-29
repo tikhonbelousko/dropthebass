@@ -32,6 +32,10 @@ var config = {
       {
         test: /\.glsl$/,
         loader: 'shader'
+      },
+      {
+        test: /\.(svg|png)$/,
+        loader: 'file-loader'
       }
     ]
   }

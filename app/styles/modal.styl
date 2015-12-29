@@ -1,0 +1,89 @@
+@import '../../node_modules/nib/index.styl'
+
+$backgroundColor = #2C2C2C
+$accentColor = #E85498
+
+.modal-overlay
+  background rgba($backgroundColor, 0)
+  position absolute
+  top 0
+  bottom 0
+  left 0
+  right 0
+  z-index 100
+  display flex
+  align-items center
+  justify-content center
+  cursor pointer
+  transition all .3s ease .3s
+  point-events none
+
+  &.-open
+    background rgba($backgroundColor, .65)
+    transition all .3s ease 0s
+    point-events default
+
+    .modal
+      transform scale(1) translateY(0%)
+      opacity 1
+      transition all .3s ease .3s
+
+  .modal
+    width 400px
+    padding 40px 20px
+    background black
+    color white
+    border-radius 3px
+    position relative
+    background url(../assets/modal-background.png)
+    background-position center
+    background-size cover
+    background-repeat no-repeat
+    cursor default
+    transition all .3s ease .0s
+    transform scale(0.5) translateY(200%)
+    opacity 0
+
+  .modal-text
+    font-size 14px
+    color rgba(white, 0.9)
+    margin-bottom 40px
+
+  .modal-label
+    font-size 14px
+    color rgba(white, 0.5)
+    margin-bottom 5px
+    margin-left 3px
+
+  .modal-url
+    color white
+    background $backgroundColor
+    border-radius 3px
+    font-size 14px
+    padding 12px 8px
+    display block
+    width 100%
+    border none
+    margin-bottom 30px
+
+    &:active,
+    &:focus
+      outline none
+
+  .modal-button
+    display block
+    padding 8px 0px 9px 0px
+    width 160px
+    color #FFF
+    background $accentColor
+    border-radius 3px
+    margin 0 auto
+    text-align center
+    font-size 14px
+    cursor pointer
+    transition background .3s ease
+
+    &:hover
+      background rgba($accentColor, 0.8)
+
+

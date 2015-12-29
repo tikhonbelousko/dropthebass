@@ -1,0 +1,116 @@
+@import '../../node_modules/nib/index.styl'
+
+$backgroundColor = #2C2C2C
+$textColor = #FFF
+$accentColor = #E85498
+
+.player
+  position absolute
+  top 40px
+  left 40px
+  width 380px
+  height 100px
+  background $backgroundColor
+  display flex
+  z-index 10
+  border-radius 3px
+
+  // Artwork
+  .player-artwork
+    width 100px
+    height 100px
+    background $accentColor
+    border-radius 3px 0 0 3px
+    position relative
+
+  .player-overlay
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background rgba($accentColor, 0.8)
+    opacity 0
+    transition opacity .3s ease
+    cursor pointer
+    border-radius 3px 0 0 3px
+    display flex
+    align-items center
+    justify-content center
+
+    &:hover
+      opacity 1
+
+    &:before
+      content ''
+      display block
+      width 34px
+      height 34px
+      background url(../assets/play-button.svg)
+
+
+  // Content
+  .player-content
+    flex 1
+    padding 15px 20px
+
+    .title
+      font-size 16px
+      color $textColor
+      margin-bottom 6px
+
+    .singer
+      font-size 14px
+      color $textColor
+      opacity 0.9
+      text-transform uppercase
+      margin-bottom 10px
+
+  // Progress bar
+  .progress-block
+    display flex
+    height 20px
+    align-items center
+
+    .progress
+      flex 1
+      height 6px
+      background rgba(255,255,255, 0.1)
+      position relative
+      cursor pointer
+
+    .fill
+      width 40%
+      height 100%
+      background $accentColor
+
+    .handle
+      width 4px
+      height 10px
+      top -2px
+      background $textColor
+      position absolute
+      left 40%
+
+
+    .time
+      color $textColor
+      font-size 12px
+      width 40px
+      text-align right
+
+  // Open
+  .player-open
+    position absolute
+    left 0
+    right 0
+    top 100%
+    padding 10px
+    font-size 14px
+    color $accentColor
+    text-align center
+    cursor pointer
+    transition opacity 0.3s ease
+
+    &:hover
+      opacity 0.7
