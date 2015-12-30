@@ -1,7 +1,15 @@
 import React from 'react'
 import classNames from 'classnames'
+import ReactSlider from 'react-slider'
 
 class Player extends React.Component {
+
+  get formatedTime() {
+    let time = Math.floor(this.props.time)
+    let minutes = '' + Math.floor(time / 60);
+    let seconds = '0' + (time - minutes * 60);
+    return minutes.substr(-2) + ':' + seconds.substr(-2);
+  }
 
   render() {
     let background = this.props.artwork ? `url(${this.props.artwork})` : false
@@ -20,11 +28,17 @@ class Player extends React.Component {
           <div className='title'> {this.props.title} </div>
           <div className='singer'> {this.props.author} </div>
           <div className='progress-block'>
-            <div className='progress'>
-              <div className='fill'></div>
-              <div className='handle'></div>
-            </div>
-            <div className='time'> {this.props.time} </div>
+            <ReactSlider
+              className='slider'
+              barClassName='slider-bar'
+              handleClassName='slider-handle'
+              value={this.props.time}
+              withBars
+              min={0}
+              max={this.props.duration}
+              onChange={this.props.onSeek}
+            />
+            <div className='time'> {this.formatedTime} </div>
           </div>
         </div>
 

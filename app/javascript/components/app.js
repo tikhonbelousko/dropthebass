@@ -67,29 +67,30 @@ class App extends React.Component {
     }
   }
 
-  formatTime(time) {
-    time = Math.floor(time)
-    let minutes = '' + Math.floor(time / 60);
-    let seconds = '0' + (time - minutes * 60);
-    return minutes.substr(-2) + ":" + seconds.substr(-2);
+  seekTo(value) {
+    if (!this.refs.player) return
+    console.log(value)
+    this.refs.player.currentTime = value
   }
 
   render() {
     let songData = this.props.song.data
-    let time = this.refs.player ? this.formatTime(this.refs.player.currentTime) : null
     // console.log(this.refs.player)
 
     return (
       <div className='visualizer-app'>
         <Gaussian intensity={this.state.intensity}/>
+
         <Player
           artwork={ songData ? songData.artwork_url : null }
           title={ songData ? songData.title : null }
           author={ songData ? songData.user.username : null }
-          time={ time ? time : '0:00' }
-          onPlay={ () => this.onPlay() }
+          time={ this.refs.player ? this.refs.player.currentTime : 0 }
+          duration={ this.refs.player && this.refs.player.duration ? this.refs.player.duration : 0.0001}
           isPaused={ this.refs.player ? this.refs.player.paused : true }
-          onOpen={() => this.setState({modalOpen: true})}
+          onPlay={ () => this.onPlay() }
+          onSeek={ (value) => this.seekTo(value) }
+          onOpen={ () => this.setState({modalOpen: true}) }
         />
 
         <audio
