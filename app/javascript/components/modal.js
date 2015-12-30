@@ -26,7 +26,7 @@ class Modal extends React.Component {
           <div className='modal-text'>
             Hi! You can paste a link to the song
             page on <a href='https://soundcloud.com'>SoundCloud </a>
-            below to visualise it. Be ware that not all of the song are playable
+            below to visualise it. Be ware that not all of the songs are playable
             due to <a href='http://stackoverflow.com/a/15109673'> CORS restrictions </a> on the SoundCloud.
           </div>
           <div className='modal-label'> Link to the song </div>

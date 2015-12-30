@@ -1,5 +1,4 @@
 const CLIENT_ID = '61b17ec61bd38e4b6cfe078e58d5a062'
-const TRACK_URL = 'https://soundcloud.com/dillonfrancis/disclosure-omen-dillon-francis-remix'
 
 export const REQUEST_SONG = 'REQUEST_SONG'
 function requestSong() {
