@@ -19,13 +19,13 @@ class App extends React.Component {
     // let TRACK_URL = 'https://soundcloud.com/dillonfrancis/disclosure-omen-dillon-francis-remix'
     let TRACK_URL = 'https://soundcloud.com/lyonsounds/g-eazy-me-myself-and-i'
     this.props.dispatch(fetchSong(TRACK_URL))
+    this.setupPlayer()
     this.tick()
   }
 
-  componentWillReceiveProps(newProps) {
-    let { song } = newProps
-    if (song.data) {
-      this.setupPlayer(song.data.song_url)
+  componentDidUpdate(prevProps) {
+    if (prevProps.song != this.props.song) {
+      this.refs.player.play()
     }
   }
 
@@ -69,13 +69,19 @@ class App extends React.Component {
 
   seekTo(value) {
     if (!this.refs.player) return
-    console.log(value)
     this.refs.player.currentTime = value
+  }
+
+  setSong(songUrl) {
+    console.log('url:', songUrl)
+    if (songUrl.trim().length > 0) {
+      this.props.dispatch(fetchSong(songUrl))
+      this.setState({modalOpen: false})
+    }
   }
 
   render() {
     let songData = this.props.song.data
-    // console.log(this.refs.player)
 
     return (
       <div className='visualizer-app'>
@@ -103,8 +109,8 @@ class App extends React.Component {
         <Modal
           isOpen={this.state.modalOpen}
           onOverlayClick={() => this.setState({modalOpen: false})}
-          onButtonClick={() => null}
-          />
+          onButtonClick={(value) => this.setSong(value)}
+        />
       </div>
     )
   }
