@@ -15,7 +15,7 @@ You can see the result on: [http://dazzz.github.io/dropthebass/](http://dazzz.gi
 ```
 
 ## Project structure
-The source code is located in `/app/` folder. This folder have the following structure:
+The source code is located in `/app/` folder. This folder has the following structure:
 
 ### Components
 Set of React components used in the app.
@@ -27,7 +27,7 @@ Set of React components used in the app.
     - uses `/app/utils.js` for initializing routines;
     - uses shaders located in `/app/shaders/` folder;
     - uses [gl-matrix](http://glmatrix.net/) for dealing with matrices.
-- `modal.js` - used for opening new songs.
+- `modal.js` - modal window for opening new songs.
 
 ### Actions, Reducers, Stores
 Actions, Reducers, Stores are paradigms of [Redux](https://github.com/rackt/redux) library for handling user interactions and managing data state.
