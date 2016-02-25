@@ -92,7 +92,7 @@
 
 
 	// module
-	exports.push([module.id, ".gaussian {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.player {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  width: 380px;\n  height: 100px;\n  background: #2c2c2c;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  z-index: 10;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n}\n.player.-paused .player-overlay {\n  opacity: 1;\n  -ms-filter: none;\n  filter: none;\n}\n.player.-paused .player-overlay:before {\n  background: url(" + __webpack_require__(5) + ");\n}\n.player .player-artwork {\n  width: 100px;\n  height: 100px;\n  background: #e85498;\n  -webkit-border-radius: 3px 0 0 3px;\n  border-radius: 3px 0 0 3px;\n  position: relative;\n}\n.player .player-overlay {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(232,84,152,0.8);\n  opacity: 0;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n  filter: alpha(opacity=0);\n  -webkit-transition: opacity 0.3s ease;\n  -moz-transition: opacity 0.3s ease;\n  -o-transition: opacity 0.3s ease;\n  -ms-transition: opacity 0.3s ease;\n  transition: opacity 0.3s ease;\n  cursor: pointer;\n  -webkit-border-radius: 3px 0 0 3px;\n  border-radius: 3px 0 0 3px;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -o-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -moz-box-pack: center;\n  -o-box-pack: center;\n  -ms-flex-pack: center;\n  -webkit-justify-content: center;\n  justify-content: center;\n}\n.player .player-overlay:hover {\n  opacity: 1;\n  -ms-filter: none;\n  filter: none;\n}\n.player .player-overlay:before {\n  content: '';\n  display: block;\n  width: 34px;\n  height: 34px;\n  background: url(" + __webpack_require__(6) + ");\n}\n.player .player-content {\n  -webkit-box-flex: 1;\n  -moz-box-flex: 1;\n  -o-box-flex: 1;\n  box-flex: 1;\n  -webkit-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  padding: 15px 20px;\n}\n.player .player-content .title {\n  font-size: 16px;\n  color: #fff;\n  margin-bottom: 6px;\n  white-space: nowrap;\n  overflow: hidden;\n  -o-text-overflow: ellipsis;\n  text-overflow: ellipsis;\n}\n.player .player-content .singer {\n  font-size: 14px;\n  color: #fff;\n  opacity: 0.9;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)\";\n  filter: alpha(opacity=90);\n  text-transform: uppercase;\n  margin-bottom: 10px;\n  white-space: nowrap;\n  overflow: hidden;\n  -o-text-overflow: ellipsis;\n  text-overflow: ellipsis;\n}\n.player .progress-block {\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  height: 20px;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -o-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n}\n.player .progress-block .slider {\n  -webkit-box-flex: 1;\n  -moz-box-flex: 1;\n  -o-box-flex: 1;\n  box-flex: 1;\n  -webkit-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  height: 6px;\n  background: rgba(255,255,255,0.1);\n  position: relative;\n  cursor: pointer;\n}\n.player .progress-block .slider-bar {\n  height: 100%;\n  background: #e85498;\n}\n.player .progress-block .slider-bar-1 {\n  display: none;\n}\n.player .progress-block .slider-handle {\n  width: 4px;\n  height: 10px;\n  top: -2px;\n  background: #fff;\n  position: absolute;\n}\n.player .progress-block .time {\n  color: #fff;\n  font-size: 12px;\n  width: 40px;\n  text-align: right;\n}\n.player .player-open {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 100%;\n  padding: 10px;\n  font-size: 14px;\n  color: #e85498;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: opacity 0.3s ease;\n  -moz-transition: opacity 0.3s ease;\n  -o-transition: opacity 0.3s ease;\n  -ms-transition: opacity 0.3s ease;\n  transition: opacity 0.3s ease;\n}\n.player .player-open:hover {\n  opacity: 0.7;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)\";\n  filter: alpha(opacity=70);\n}\n.modal-overlay {\n  background: rgba(44,44,44,0);\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 100;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -o-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -moz-box-pack: center;\n  -o-box-pack: center;\n  -ms-flex-pack: center;\n  -webkit-justify-content: center;\n  justify-content: center;\n  cursor: pointer;\n  -webkit-transition: all 0.3s ease 0.3s;\n  -moz-transition: all 0.3s ease 0.3s;\n  -o-transition: all 0.3s ease 0.3s;\n  -ms-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n  pointer-events: none;\n}\n.modal-overlay.-open {\n  background: rgba(44,44,44,0.65);\n  -webkit-transition: all 0.3s ease 0s;\n  -moz-transition: all 0.3s ease 0s;\n  -o-transition: all 0.3s ease 0s;\n  -ms-transition: all 0.3s ease 0s;\n  transition: all 0.3s ease 0s;\n  pointer-events: auto;\n}\n.modal-overlay.-open .modal {\n  -webkit-transform: scale(1) translateY(0%);\n  -moz-transform: scale(1) translateY(0%);\n  -o-transform: scale(1) translateY(0%);\n  -ms-transform: scale(1) translateY(0%);\n  transform: scale(1) translateY(0%);\n  opacity: 1;\n  -ms-filter: none;\n  filter: none;\n  -webkit-transition: all 0.3s ease 0.3s;\n  -moz-transition: all 0.3s ease 0.3s;\n  -o-transition: all 0.3s ease 0.3s;\n  -ms-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.modal-overlay a {\n  color: #e85498;\n  text-decoration: none;\n}\n.modal-overlay a:hover {\n  opacity: 0.8;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)\";\n  filter: alpha(opacity=80);\n}\n.modal-overlay .modal-close {\n  display: block;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.modal-overlay .modal {\n  width: 400px;\n  padding: 40px 20px;\n  background: #000;\n  color: #fff;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  position: relative;\n  background: url(" + __webpack_require__(7) + ");\n  background-position: center;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: default;\n  -webkit-transition: all 0.3s ease 0s;\n  -moz-transition: all 0.3s ease 0s;\n  -o-transition: all 0.3s ease 0s;\n  -ms-transition: all 0.3s ease 0s;\n  transition: all 0.3s ease 0s;\n  -webkit-transform: scale(0.5) translateY(200%);\n  -moz-transform: scale(0.5) translateY(200%);\n  -o-transform: scale(0.5) translateY(200%);\n  -ms-transform: scale(0.5) translateY(200%);\n  transform: scale(0.5) translateY(200%);\n  opacity: 0;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n  filter: alpha(opacity=0);\n}\n.modal-overlay .modal-text {\n  font-size: 14px;\n  color: rgba(255,255,255,0.9);\n  margin-bottom: 40px;\n}\n.modal-overlay .modal-label {\n  font-size: 14px;\n  color: rgba(255,255,255,0.5);\n  margin-bottom: 5px;\n  margin-left: 3px;\n}\n.modal-overlay .modal-url {\n  color: #fff;\n  background: #2c2c2c;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  font-size: 14px;\n  padding: 12px 8px;\n  display: block;\n  width: 100%;\n  border: none;\n  margin-bottom: 30px;\n}\n.modal-overlay .modal-url:active,\n.modal-overlay .modal-url:focus {\n  outline: none;\n}\n.modal-overlay .modal-button {\n  display: block;\n  padding: 8px 0px 9px 0px;\n  width: 160px;\n  color: #fff;\n  background: #e85498;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  margin: 0 auto;\n  text-align: center;\n  font-size: 14px;\n  cursor: pointer;\n  -webkit-transition: background 0.3s ease;\n  -moz-transition: background 0.3s ease;\n  -o-transition: background 0.3s ease;\n  -ms-transition: background 0.3s ease;\n  transition: background 0.3s ease;\n}\n.modal-overlay .modal-button:hover {\n  background: rgba(232,84,152,0.8);\n}\nhtml,\nbody {\n  display: block;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n  -webkit-font-smoothing: antialiased;\n  min-width: 460px;\n}\n#app {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\naudio {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  z-index: 10;\n}\nhtml * {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n", ""]);
+	exports.push([module.id, ".gaussian {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.player {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  width: 380px;\n  height: 100px;\n  background: #2c2c2c;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  z-index: 10;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n}\n.player.-paused .player-overlay {\n  opacity: 1;\n  -ms-filter: none;\n  filter: none;\n}\n.player.-paused .player-overlay:before {\n  background: url(" + __webpack_require__(5) + ");\n}\n.player .player-artwork {\n  width: 100px;\n  height: 100px;\n  background: #e85498;\n  -webkit-border-radius: 3px 0 0 3px;\n  border-radius: 3px 0 0 3px;\n  position: relative;\n}\n.player .player-overlay {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(232,84,152,0.8);\n  opacity: 0;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n  filter: alpha(opacity=0);\n  -webkit-transition: opacity 0.3s ease;\n  -moz-transition: opacity 0.3s ease;\n  -o-transition: opacity 0.3s ease;\n  -ms-transition: opacity 0.3s ease;\n  transition: opacity 0.3s ease;\n  cursor: pointer;\n  -webkit-border-radius: 3px 0 0 3px;\n  border-radius: 3px 0 0 3px;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -o-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -moz-box-pack: center;\n  -o-box-pack: center;\n  -ms-flex-pack: center;\n  -webkit-justify-content: center;\n  justify-content: center;\n}\n.player .player-overlay:hover {\n  opacity: 1;\n  -ms-filter: none;\n  filter: none;\n}\n.player .player-overlay:before {\n  content: '';\n  display: block;\n  width: 34px;\n  height: 34px;\n  background: url(" + __webpack_require__(6) + ");\n}\n.player .player-content {\n  overflow: hidden;\n -webkit-box-flex: 1;\n  -moz-box-flex: 1;\n  -o-box-flex: 1;\n  box-flex: 1;\n  -webkit-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  padding: 15px 20px;\n}\n.player .player-content .title {\n  font-size: 16px;\n  color: #fff;\n  margin-bottom: 6px;\n  white-space: nowrap;\n  overflow: hidden;\n  -o-text-overflow: ellipsis;\n  text-overflow: ellipsis;\n}\n.player .player-content .singer {\n  font-size: 14px;\n  color: #fff;\n  opacity: 0.9;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)\";\n  filter: alpha(opacity=90);\n  text-transform: uppercase;\n  margin-bottom: 10px;\n  white-space: nowrap;\n  overflow: hidden;\n  -o-text-overflow: ellipsis;\n  text-overflow: ellipsis;\n}\n.player .progress-block {\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  height: 20px;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -o-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n}\n.player .progress-block .slider {\n  -webkit-box-flex: 1;\n  -moz-box-flex: 1;\n  -o-box-flex: 1;\n  box-flex: 1;\n  -webkit-flex: 1;\n  -ms-flex: 1;\n  flex: 1;\n  height: 6px;\n  background: rgba(255,255,255,0.1);\n  position: relative;\n  cursor: pointer;\n}\n.player .progress-block .slider-bar {\n  height: 100%;\n  background: #e85498;\n}\n.player .progress-block .slider-bar-1 {\n  display: none;\n}\n.player .progress-block .slider-handle {\n  width: 4px;\n  height: 10px;\n  top: -2px;\n  background: #fff;\n  position: absolute;\n}\n.player .progress-block .time {\n  color: #fff;\n  font-size: 12px;\n  width: 40px;\n  text-align: right;\n}\n.player .player-open {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 100%;\n  padding: 10px;\n  font-size: 14px;\n  color: #e85498;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: opacity 0.3s ease;\n  -moz-transition: opacity 0.3s ease;\n  -o-transition: opacity 0.3s ease;\n  -ms-transition: opacity 0.3s ease;\n  transition: opacity 0.3s ease;\n}\n.player .player-open:hover {\n  opacity: 0.7;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)\";\n  filter: alpha(opacity=70);\n}\n.modal-overlay {\n  background: rgba(44,44,44,0);\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 100;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: box;\n  display: flex;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -o-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -moz-box-pack: center;\n  -o-box-pack: center;\n  -ms-flex-pack: center;\n  -webkit-justify-content: center;\n  justify-content: center;\n  cursor: pointer;\n  -webkit-transition: all 0.3s ease 0.3s;\n  -moz-transition: all 0.3s ease 0.3s;\n  -o-transition: all 0.3s ease 0.3s;\n  -ms-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n  pointer-events: none;\n}\n.modal-overlay.-open {\n  background: rgba(44,44,44,0.65);\n  -webkit-transition: all 0.3s ease 0s;\n  -moz-transition: all 0.3s ease 0s;\n  -o-transition: all 0.3s ease 0s;\n  -ms-transition: all 0.3s ease 0s;\n  transition: all 0.3s ease 0s;\n  pointer-events: auto;\n}\n.modal-overlay.-open .modal {\n  -webkit-transform: scale(1) translateY(0%);\n  -moz-transform: scale(1) translateY(0%);\n  -o-transform: scale(1) translateY(0%);\n  -ms-transform: scale(1) translateY(0%);\n  transform: scale(1) translateY(0%);\n  opacity: 1;\n  -ms-filter: none;\n  filter: none;\n  -webkit-transition: all 0.3s ease 0.3s;\n  -moz-transition: all 0.3s ease 0.3s;\n  -o-transition: all 0.3s ease 0.3s;\n  -ms-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.modal-overlay a {\n  color: #e85498;\n  text-decoration: none;\n}\n.modal-overlay a:hover {\n  opacity: 0.8;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)\";\n  filter: alpha(opacity=80);\n}\n.modal-overlay .modal-close {\n  display: block;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}\n.modal-overlay .modal {\n  width: 400px;\n  padding: 40px 20px;\n  background: #000;\n  color: #fff;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  position: relative;\n  background: url(" + __webpack_require__(7) + ");\n  background-position: center;\n  -webkit-background-size: cover;\n  -moz-background-size: cover;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: default;\n  -webkit-transition: all 0.3s ease 0s;\n  -moz-transition: all 0.3s ease 0s;\n  -o-transition: all 0.3s ease 0s;\n  -ms-transition: all 0.3s ease 0s;\n  transition: all 0.3s ease 0s;\n  -webkit-transform: scale(0.5) translateY(200%);\n  -moz-transform: scale(0.5) translateY(200%);\n  -o-transform: scale(0.5) translateY(200%);\n  -ms-transform: scale(0.5) translateY(200%);\n  transform: scale(0.5) translateY(200%);\n  opacity: 0;\n  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n  filter: alpha(opacity=0);\n}\n.modal-overlay .modal-text {\n  font-size: 14px;\n  color: rgba(255,255,255,0.9);\n  margin-bottom: 40px;\n}\n.modal-overlay .modal-label {\n  font-size: 14px;\n  color: rgba(255,255,255,0.5);\n  margin-bottom: 5px;\n  margin-left: 3px;\n}\n.modal-overlay .modal-url {\n  color: #fff;\n  background: #2c2c2c;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  font-size: 14px;\n  padding: 12px 8px;\n  display: block;\n  width: 100%;\n  border: none;\n  margin-bottom: 30px;\n}\n.modal-overlay .modal-url:active,\n.modal-overlay .modal-url:focus {\n  outline: none;\n}\n.modal-overlay .modal-button {\n  display: block;\n  padding: 8px 0px 9px 0px;\n  width: 160px;\n  color: #fff;\n  background: #e85498;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  margin: 0 auto;\n  text-align: center;\n  font-size: 14px;\n  cursor: pointer;\n  -webkit-transition: background 0.3s ease;\n  -moz-transition: background 0.3s ease;\n  -o-transition: background 0.3s ease;\n  -ms-transition: background 0.3s ease;\n  transition: background 0.3s ease;\n}\n.modal-overlay .modal-button:hover {\n  background: rgba(232,84,152,0.8);\n}\nhtml,\nbody {\n  display: block;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n  -webkit-font-smoothing: antialiased;\n  min-width: 460px;\n}\n#app {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\naudio {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  z-index: 10;\n}\nhtml * {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n", ""]);
 
 	// exports
 
@@ -15011,7 +15011,7 @@
 	 *
 	 * @providesModule shallowEqual
 	 * @typechecks
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -22061,7 +22061,7 @@
 	        out[2] = a[1];
 	        out[3] = a[3];
 	    }
-	    
+
 	    return out;
 	};
 
@@ -22082,7 +22082,7 @@
 	        return null;
 	    }
 	    det = 1.0 / det;
-	    
+
 	    out[0] =  a3 * det;
 	    out[1] = -a1 * det;
 	    out[2] = -a2 * det;
@@ -22242,19 +22242,19 @@
 
 	/**
 	 * Returns L, D and U matrices (Lower triangular, Diagonal and Upper triangular) by factorizing the input matrix
-	 * @param {mat2} L the lower triangular matrix 
-	 * @param {mat2} D the diagonal matrix 
-	 * @param {mat2} U the upper triangular matrix 
+	 * @param {mat2} L the lower triangular matrix
+	 * @param {mat2} D the diagonal matrix
+	 * @param {mat2} U the upper triangular matrix
 	 * @param {mat2} a the input matrix to factorize
 	 */
 
-	mat2.LDU = function (L, D, U, a) { 
-	    L[2] = a[2]/a[0]; 
-	    U[0] = a[0]; 
-	    U[1] = a[1]; 
-	    U[3] = a[3] - L[2] * U[1]; 
-	    return [L, D, U];       
-	}; 
+	mat2.LDU = function (L, D, U, a) {
+	    L[2] = a[2]/a[0];
+	    U[0] = a[0];
+	    U[1] = a[1];
+	    U[3] = a[3] - L[2] * U[1];
+	    return [L, D, U];
+	};
 
 
 	module.exports = mat2;
@@ -22289,8 +22289,8 @@
 	/**
 	 * @class 2x3 Matrix
 	 * @name mat2d
-	 * 
-	 * @description 
+	 *
+	 * @description
 	 * A mat2d contains six elements defined as:
 	 * <pre>
 	 * [a, c, tx,
@@ -22566,7 +22566,7 @@
 	 * @returns {String} string representation of the matrix
 	 */
 	mat2d.str = function (a) {
-	    return 'mat2d(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + 
+	    return 'mat2d(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' +
 	                    a[3] + ', ' + a[4] + ', ' + a[5] + ')';
 	};
 
@@ -22576,9 +22576,9 @@
 	 * @param {mat2d} a the matrix to calculate Frobenius norm of
 	 * @returns {Number} Frobenius norm
 	 */
-	mat2d.frob = function (a) { 
+	mat2d.frob = function (a) {
 	    return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + 1))
-	}; 
+	};
 
 	module.exports = mat2d;
 
@@ -22741,7 +22741,7 @@
 	        out[7] = a[5];
 	        out[8] = a[8];
 	    }
-	    
+
 	    return out;
 	};
 
@@ -22764,8 +22764,8 @@
 	        // Calculate the determinant
 	        det = a00 * b01 + a01 * b11 + a02 * b21;
 
-	    if (!det) { 
-	        return null; 
+	    if (!det) {
+	        return null;
 	    }
 	    det = 1.0 / det;
 
@@ -23108,8 +23108,8 @@
 	        // Calculate the determinant
 	        det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 
-	    if (!det) { 
-	        return null; 
+	    if (!det) {
+	        return null;
 	    }
 	    det = 1.0 / det;
 
@@ -23135,8 +23135,8 @@
 	 * @returns {String} string representation of the matrix
 	 */
 	mat3.str = function (a) {
-	    return 'mat3(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + 
-	                    a[3] + ', ' + a[4] + ', ' + a[5] + ', ' + 
+	    return 'mat3(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' +
+	                    a[3] + ', ' + a[4] + ', ' + a[5] + ', ' +
 	                    a[6] + ', ' + a[7] + ', ' + a[8] + ')';
 	};
 
@@ -23336,7 +23336,7 @@
 	        out[14] = a[11];
 	        out[15] = a[15];
 	    }
-	    
+
 	    return out;
 	};
 
@@ -23369,8 +23369,8 @@
 	        // Calculate the determinant
 	        det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 
-	    if (!det) { 
-	        return null; 
+	    if (!det) {
+	        return null;
 	    }
 	    det = 1.0 / det;
 
@@ -23470,7 +23470,7 @@
 	        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
 
 	    // Cache only the current line of the second matrix
-	    var b0  = b[0], b1 = b[1], b2 = b[2], b3 = b[3];  
+	    var b0  = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
 	    out[0] = b0*a00 + b1*a10 + b2*a20 + b3*a30;
 	    out[1] = b0*a01 + b1*a11 + b2*a21 + b3*a31;
 	    out[2] = b0*a02 + b1*a12 + b2*a22 + b3*a32;
@@ -23590,7 +23590,7 @@
 	        b20, b21, b22;
 
 	    if (Math.abs(len) < glMatrix.EPSILON) { return null; }
-	    
+
 	    len = 1 / len;
 	    x *= len;
 	    y *= len;
@@ -23839,18 +23839,18 @@
 	    var x = axis[0], y = axis[1], z = axis[2],
 	        len = Math.sqrt(x * x + y * y + z * z),
 	        s, c, t;
-	    
+
 	    if (Math.abs(len) < glMatrix.EPSILON) { return null; }
-	    
+
 	    len = 1 / len;
 	    x *= len;
 	    y *= len;
 	    z *= len;
-	    
+
 	    s = Math.sin(rad);
 	    c = Math.cos(rad);
 	    t = 1 - c;
-	    
+
 	    // Perform rotation-specific matrix multiplication
 	    out[0] = x * x * t + c;
 	    out[1] = y * x * t + z * s;
@@ -23885,7 +23885,7 @@
 	mat4.fromXRotation = function(out, rad) {
 	    var s = Math.sin(rad),
 	        c = Math.cos(rad);
-	    
+
 	    // Perform axis-specific matrix multiplication
 	    out[0]  = 1;
 	    out[1]  = 0;
@@ -23920,7 +23920,7 @@
 	mat4.fromYRotation = function(out, rad) {
 	    var s = Math.sin(rad),
 	        c = Math.cos(rad);
-	    
+
 	    // Perform axis-specific matrix multiplication
 	    out[0]  = c;
 	    out[1]  = 0;
@@ -23955,7 +23955,7 @@
 	mat4.fromZRotation = function(out, rad) {
 	    var s = Math.sin(rad),
 	        c = Math.cos(rad);
-	    
+
 	    // Perform axis-specific matrix multiplication
 	    out[0]  = c;
 	    out[1]  = s;
@@ -24024,7 +24024,7 @@
 	    out[13] = v[1];
 	    out[14] = v[2];
 	    out[15] = 1;
-	    
+
 	    return out;
 	};
 
@@ -24081,7 +24081,7 @@
 	    out[13] = v[1];
 	    out[14] = v[2];
 	    out[15] = 1;
-	    
+
 	    return out;
 	};
 
@@ -24121,7 +24121,7 @@
 	      wx = w * x2,
 	      wy = w * y2,
 	      wz = w * z2,
-	      
+
 	      sx = s[0],
 	      sy = s[1],
 	      sz = s[2],
@@ -24129,7 +24129,7 @@
 	      ox = o[0],
 	      oy = o[1],
 	      oz = o[2];
-	      
+
 	  out[0] = (1 - (yy + zz)) * sx;
 	  out[1] = (xy + wz) * sx;
 	  out[2] = (xz - wy) * sx;
@@ -24146,7 +24146,7 @@
 	  out[13] = v[1] + oy - (out[1] * ox + out[5] * oy + out[9] * oz);
 	  out[14] = v[2] + oz - (out[2] * ox + out[6] * oy + out[10] * oz);
 	  out[15] = 1;
-	        
+
 	  return out;
 	};
 
@@ -24425,7 +24425,7 @@
 	mat4.str = function (a) {
 	    return 'mat4(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ', ' +
 	                    a[4] + ', ' + a[5] + ', ' + a[6] + ', ' + a[7] + ', ' +
-	                    a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' + 
+	                    a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' +
 	                    a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 	};
 
@@ -24697,7 +24697,7 @@
 	 * @returns {quat} out
 	 */
 	quat.rotateX = function (out, a, rad) {
-	    rad *= 0.5; 
+	    rad *= 0.5;
 
 	    var ax = a[0], ay = a[1], az = a[2], aw = a[3],
 	        bx = Math.sin(rad), bw = Math.cos(rad);
@@ -24718,7 +24718,7 @@
 	 * @returns {quat} out
 	 */
 	quat.rotateY = function (out, a, rad) {
-	    rad *= 0.5; 
+	    rad *= 0.5;
 
 	    var ax = a[0], ay = a[1], az = a[2], aw = a[3],
 	        by = Math.sin(rad), bw = Math.cos(rad);
@@ -24739,7 +24739,7 @@
 	 * @returns {quat} out
 	 */
 	quat.rotateZ = function (out, a, rad) {
-	    rad *= 0.5; 
+	    rad *= 0.5;
 
 	    var ax = a[0], ay = a[1], az = a[2], aw = a[3],
 	        bz = Math.sin(rad), bw = Math.cos(rad);
@@ -24827,8 +24827,8 @@
 	        sinom  = Math.sin(omega);
 	        scale0 = Math.sin((1.0 - t) * omega) / sinom;
 	        scale1 = Math.sin(t * omega) / sinom;
-	    } else {        
-	        // "from" and "to" quaternions are very close 
+	    } else {
+	        // "from" and "to" quaternions are very close
 	        //  ... so we can do a linear interpolation
 	        scale0 = 1.0 - t;
 	        scale1 = t;
@@ -24838,7 +24838,7 @@
 	    out[1] = scale0 * ay + scale1 * by;
 	    out[2] = scale0 * az + scale1 * bz;
 	    out[3] = scale0 * aw + scale1 * bw;
-	    
+
 	    return out;
 	};
 
@@ -24856,12 +24856,12 @@
 	quat.sqlerp = (function () {
 	  var temp1 = quat.create();
 	  var temp2 = quat.create();
-	  
+
 	  return function (out, a, b, c, d, t) {
 	    quat.slerp(temp1, a, d, t);
 	    quat.slerp(temp2, b, c, t);
 	    quat.slerp(out, temp1, temp2, 2 * t * (1 - t));
-	    
+
 	    return out;
 	  };
 	}());
@@ -24877,7 +24877,7 @@
 	    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
 	        dot = a0*a0 + a1*a1 + a2*a2 + a3*a3,
 	        invDot = dot ? 1.0/dot : 0;
-	    
+
 	    // TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
 
 	    out[0] = -a0*invDot;
@@ -24977,7 +24977,7 @@
 	          i = 2;
 	        var j = (i+1)%3;
 	        var k = (i+2)%3;
-	        
+
 	        fRoot = Math.sqrt(m[i*3+i]-m[j*3+j]-m[k*3+k] + 1.0);
 	        out[i] = 0.5 * fRoot;
 	        fRoot = 0.5 / fRoot;
@@ -24985,7 +24985,7 @@
 	        out[j] = (m[j*3+i] + m[i*3+j]) * fRoot;
 	        out[k] = (m[k*3+i] + m[i*3+k]) * fRoot;
 	    }
-	    
+
 	    return out;
 	};
 
@@ -25439,11 +25439,11 @@
 	      factor2 = factorTimes2 * (t - 2) + t,
 	      factor3 = factorTimes2 * (t - 1),
 	      factor4 = factorTimes2 * (3 - 2 * t);
-	  
+
 	  out[0] = a[0] * factor1 + b[0] * factor2 + c[0] * factor3 + d[0] * factor4;
 	  out[1] = a[1] * factor1 + b[1] * factor2 + c[1] * factor3 + d[1] * factor4;
 	  out[2] = a[2] * factor1 + b[2] * factor2 + c[2] * factor3 + d[2] * factor4;
-	  
+
 	  return out;
 	};
 
@@ -25466,11 +25466,11 @@
 	      factor2 = 3 * t * inverseFactorTimesTwo,
 	      factor3 = 3 * factorTimes2 * inverseFactor,
 	      factor4 = factorTimes2 * t;
-	  
+
 	  out[0] = a[0] * factor1 + b[0] * factor2 + c[0] * factor3 + d[0] * factor4;
 	  out[1] = a[1] * factor1 + b[1] * factor2 + c[1] * factor3 + d[1] * factor4;
 	  out[2] = a[2] * factor1 + b[2] * factor2 + c[2] * factor3 + d[2] * factor4;
-	  
+
 	  return out;
 	};
 
@@ -25598,17 +25598,17 @@
 	  	p[0] = a[0] - b[0];
 	  	p[1] = a[1] - b[1];
 	  	p[2] = a[2] - b[2];
-	  
+
 	  	//perform rotation
 	  	r[0] = p[2]*Math.sin(c) + p[0]*Math.cos(c);
 	  	r[1] = p[1];
 	  	r[2] = p[2]*Math.cos(c) - p[0]*Math.sin(c);
-	  
+
 	  	//translate to correct position
 	  	out[0] = r[0] + b[0];
 	  	out[1] = r[1] + b[1];
 	  	out[2] = r[2] + b[2];
-	  
+
 	  	return out;
 	};
 
@@ -25626,17 +25626,17 @@
 	  	p[0] = a[0] - b[0];
 	  	p[1] = a[1] - b[1];
 	  	p[2] = a[2] - b[2];
-	  
+
 	  	//perform rotation
 	  	r[0] = p[0]*Math.cos(c) - p[1]*Math.sin(c);
 	  	r[1] = p[0]*Math.sin(c) + p[1]*Math.cos(c);
 	  	r[2] = p[2];
-	  
+
 	  	//translate to correct position
 	  	out[0] = r[0] + b[0];
 	  	out[1] = r[1] + b[1];
 	  	out[2] = r[2] + b[2];
-	  
+
 	  	return out;
 	};
 
@@ -25664,7 +25664,7 @@
 	        if(!offset) {
 	            offset = 0;
 	        }
-	        
+
 	        if(count) {
 	            l = Math.min((count * stride) + offset, a.length);
 	        } else {
@@ -25676,7 +25676,7 @@
 	            fn(vec, vec, arg);
 	            a[i] = vec[0]; a[i+1] = vec[1]; a[i+2] = vec[2];
 	        }
-	        
+
 	        return a;
 	    };
 	})();
@@ -25688,20 +25688,20 @@
 	 * @returns {Number} The angle in radians
 	 */
 	vec3.angle = function(a, b) {
-	   
+
 	    var tempA = vec3.fromValues(a[0], a[1], a[2]);
 	    var tempB = vec3.fromValues(b[0], b[1], b[2]);
-	 
+
 	    vec3.normalize(tempA, tempA);
 	    vec3.normalize(tempB, tempB);
-	 
+
 	    var cosine = vec3.dot(tempA, tempB);
 
 	    if(cosine > 1.0){
 	        return 0;
 	    } else {
 	        return Math.acos(cosine);
-	    }     
+	    }
 	};
 
 	/**
@@ -26230,7 +26230,7 @@
 	        if(!offset) {
 	            offset = 0;
 	        }
-	        
+
 	        if(count) {
 	            l = Math.min((count * stride) + offset, a.length);
 	        } else {
@@ -26242,7 +26242,7 @@
 	            fn(vec, vec, arg);
 	            a[i] = vec[0]; a[i+1] = vec[1]; a[i+2] = vec[2]; a[i+3] = vec[3];
 	        }
-	        
+
 	        return a;
 	    };
 	})();
@@ -26728,7 +26728,7 @@
 	 * @returns {vec2} out
 	 */
 	vec2.transformMat4 = function(out, a, m) {
-	    var x = a[0], 
+	    var x = a[0],
 	        y = a[1];
 	    out[0] = m[0] * x + m[4] * y + m[12];
 	    out[1] = m[1] * x + m[5] * y + m[13];
@@ -26759,7 +26759,7 @@
 	        if(!offset) {
 	            offset = 0;
 	        }
-	        
+
 	        if(count) {
 	            l = Math.min((count * stride) + offset, a.length);
 	        } else {
@@ -26771,7 +26771,7 @@
 	            fn(vec, vec, arg);
 	            a[i] = vec[0]; a[i+1] = vec[1];
 	        }
-	        
+
 	        return a;
 	    };
 	})();
@@ -29120,7 +29120,7 @@
 	          svg.remove();
 	        }
 	      }
-	      if (d3_mouse_bug44083) point.x = e.pageX, point.y = e.pageY; else point.x = e.clientX, 
+	      if (d3_mouse_bug44083) point.x = e.pageX, point.y = e.pageY; else point.x = e.clientX,
 	      point.y = e.clientY;
 	      point = point.matrixTransform(container.getScreenCTM().inverse());
 	      return [ point.x, point.y ];
@@ -29495,7 +29495,7 @@
 	    }
 	    function mousewheeled() {
 	      var dispatch = event.of(this, arguments);
-	      if (mousewheelTimer) clearTimeout(mousewheelTimer); else d3_selection_interrupt.call(this), 
+	      if (mousewheelTimer) clearTimeout(mousewheelTimer); else d3_selection_interrupt.call(this),
 	      translate0 = location(center0 = center || d3.mouse(this)), zoomstarted(dispatch);
 	      mousewheelTimer = setTimeout(function() {
 	        mousewheelTimer = null;
@@ -29864,7 +29864,7 @@
 	  d3.xhr = d3_xhrType(d3_identity);
 	  function d3_xhrType(response) {
 	    return function(url, mimeType, callback) {
-	      if (arguments.length === 2 && typeof mimeType === "function") callback = mimeType, 
+	      if (arguments.length === 2 && typeof mimeType === "function") callback = mimeType,
 	      mimeType = null;
 	      return d3_xhr(url, mimeType, response, callback);
 	    };
@@ -30705,7 +30705,7 @@
 	    return n ? (date.y = d3_time_expandYear(+n[0]), i + n[0].length) : -1;
 	  }
 	  function d3_time_parseZone(date, string, i) {
-	    return /^[+-]\d{4}$/.test(string = string.slice(i, i + 5)) ? (date.Z = -string, 
+	    return /^[+-]\d{4}$/.test(string = string.slice(i, i + 5)) ? (date.Z = -string,
 	    i + 5) : -1;
 	  }
 	  function d3_time_expandYear(d) {
@@ -30898,7 +30898,7 @@
 	    var λ00, φ00, λ0, cosφ0, sinφ0;
 	    d3_geo_area.point = function(λ, φ) {
 	      d3_geo_area.point = nextPoint;
-	      λ0 = (λ00 = λ) * d3_radians, cosφ0 = Math.cos(φ = (φ00 = φ) * d3_radians / 2 + π / 4), 
+	      λ0 = (λ00 = λ) * d3_radians, cosφ0 = Math.cos(φ = (φ00 = φ) * d3_radians / 2 + π / 4),
 	      sinφ0 = Math.sin(φ);
 	    };
 	    function nextPoint(λ, φ) {
@@ -32727,7 +32727,7 @@
 	      return _ ? center([ -_[1], _[0] ]) : (_ = center(), [ _[1], -_[0] ]);
 	    };
 	    projection.rotate = function(_) {
-	      return _ ? rotate([ _[0], _[1], _.length > 2 ? _[2] + 90 : 90 ]) : (_ = rotate(), 
+	      return _ ? rotate([ _[0], _[1], _.length > 2 ? _[2] + 90 : 90 ]) : (_ = rotate(),
 	      [ _[0], _[1], _[2] - 90 ]);
 	    };
 	    return rotate([ 0, 0, 90 ]);
@@ -33581,7 +33581,7 @@
 	    };
 	    quadtree.extent = function(_) {
 	      if (!arguments.length) return x1 == null ? null : [ [ x1, y1 ], [ x2, y2 ] ];
-	      if (_ == null) x1 = y1 = x2 = y2 = null; else x1 = +_[0][0], y1 = +_[0][1], x2 = +_[1][0], 
+	      if (_ == null) x1 = y1 = x2 = y2 = null; else x1 = +_[0][0], y1 = +_[0][1], x2 = +_[1][0],
 	      y2 = +_[1][1];
 	      return quadtree;
 	    };
@@ -35306,7 +35306,7 @@
 	        return d3_layout_treemapPad(node, x);
 	      }
 	      var type;
-	      pad = (padding = x) == null ? d3_layout_treemapPadNull : (type = typeof x) === "function" ? padFunction : type === "number" ? (x = [ x, x, x, x ], 
+	      pad = (padding = x) == null ? d3_layout_treemapPadNull : (type = typeof x) === "function" ? padFunction : type === "number" ? (x = [ x, x, x, x ],
 	      padConstant) : padConstant;
 	      return treemap;
 	    };
@@ -35709,7 +35709,7 @@
 	    };
 	    scale.rangePoints = function(x, padding) {
 	      if (arguments.length < 2) padding = 0;
-	      var start = x[0], stop = x[1], step = domain.length < 2 ? (start = (start + stop) / 2, 
+	      var start = x[0], stop = x[1], step = domain.length < 2 ? (start = (start + stop) / 2,
 	      0) : (stop - start) / (domain.length - 1 + padding);
 	      range = steps(start + step * padding / 2, step);
 	      rangeBand = 0;
@@ -35721,7 +35721,7 @@
 	    };
 	    scale.rangeRoundPoints = function(x, padding) {
 	      if (arguments.length < 2) padding = 0;
-	      var start = x[0], stop = x[1], step = domain.length < 2 ? (start = stop = Math.round((start + stop) / 2), 
+	      var start = x[0], stop = x[1], step = domain.length < 2 ? (start = stop = Math.round((start + stop) / 2),
 	      0) : (stop - start) / (domain.length - 1 + padding) | 0;
 	      range = steps(start + Math.round(step * padding / 2 + (stop - start - (domain.length - 1 + padding) * step) / 2), step);
 	      rangeBand = 0;
@@ -36149,7 +36149,7 @@
 	    return points.length < 4 ? d3_svg_lineLinear(points) : points[1] + d3_svg_lineHermite(points.slice(1, -1), d3_svg_lineCardinalTangents(points, tension));
 	  }
 	  function d3_svg_lineCardinalClosed(points, tension) {
-	    return points.length < 3 ? d3_svg_lineLinearClosed(points) : points[0] + d3_svg_lineHermite((points.push(points[0]), 
+	    return points.length < 3 ? d3_svg_lineLinearClosed(points) : points[0] + d3_svg_lineHermite((points.push(points[0]),
 	    points), d3_svg_lineCardinalTangents([ points[points.length - 2] ].concat(points, [ points[1] ]), tension));
 	  }
 	  function d3_svg_lineCardinal(points, tension) {
@@ -36922,7 +36922,7 @@
 	        var g = d3.select(this);
 	        var scale0 = this.__chart__ || scale, scale1 = this.__chart__ = scale.copy();
 	        var ticks = tickValues == null ? scale1.ticks ? scale1.ticks.apply(scale1, tickArguments_) : scale1.domain() : tickValues, tickFormat = tickFormat_ == null ? scale1.tickFormat ? scale1.tickFormat.apply(scale1, tickArguments_) : d3_identity : tickFormat_, tick = g.selectAll(".tick").data(ticks, scale1), tickEnter = tick.enter().insert("g", ".domain").attr("class", "tick").style("opacity", ε), tickExit = d3.transition(tick.exit()).style("opacity", ε).remove(), tickUpdate = d3.transition(tick.order()).style("opacity", 1), tickSpacing = Math.max(innerTickSize, 0) + tickPadding, tickTransform;
-	        var range = d3_scaleRange(scale1), path = g.selectAll(".domain").data([ 0 ]), pathUpdate = (path.enter().append("path").attr("class", "domain"), 
+	        var range = d3_scaleRange(scale1), path = g.selectAll(".domain").data([ 0 ]), pathUpdate = (path.enter().append("path").attr("class", "domain"),
 	        d3.transition(path));
 	        tickEnter.append("line");
 	        tickEnter.append("text");
