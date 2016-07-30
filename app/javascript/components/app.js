@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let TRACK_URL = 'https://soundcloud.com/zomboy/dlmd'
+    let TRACK_URL = 'https://soundcloud.com/nocopyrightsounds/deaf-kev-invincible-ncs-release'
     this.props.dispatch(fetchSong(TRACK_URL))
     this.setupPlayer()
     this.tick()
